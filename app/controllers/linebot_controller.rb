@@ -27,6 +27,7 @@ class LinebotController < ApplicationController
     puts res.read_body if res.code != 200
   end
 
+  # スタート
   def callback
     body = request.body.read
 
