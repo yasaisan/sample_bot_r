@@ -114,28 +114,32 @@ class LinebotController < ApplicationController
     key = '351118560b1a45929f0d91492722b4af'
 
     host = 'https://api.cognitive.microsofttranslator.com'
-    path = '/detect?api-version=3.0'
-
-    uri = URI (host + path)
-
-    text = 'Salve, mondo!'
-
-    content = '[{"Text" : "' + text + '"}]'
-
+    path = '/translate?api-version=3.0'
+    
+    # Translate to German and Italian.
+    params = '&to=ja'
+    
+    uri = URI (host + path + params)
+    
+    text = 'Hello, world!'
+    
+    content = '[{"Text" : "' + msg + '"}]'
+    
     request = Net::HTTP::Post.new(uri)
     request['Content-type'] = 'application/json'
     request['Content-length'] = content.length
     request['Ocp-Apim-Subscription-Key'] = key
     request['X-ClientTraceId'] = SecureRandom.uuid
     request.body = content
-
+    
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         http.request (request)
     end
-
+    
     result = response.body.force_encoding("utf-8")
-
+    
     json = JSON.pretty_generate(JSON.parse(result))
     puts json
+    logger.info(json)
   end
 end
