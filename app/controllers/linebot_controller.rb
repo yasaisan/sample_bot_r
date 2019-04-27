@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
   # スタート
   def callback
     body = request.body.read
-    logger.error("[error] users#index")
+    logger.error("[error] users#index11")
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
