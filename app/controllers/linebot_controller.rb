@@ -52,7 +52,7 @@ class LinebotController < ApplicationController
     case event.type
     when Line::Bot::Event::MessageType::Text
 
-      transrate_message(event.message['text'])
+      # convert_message = transrate_message(event.message['text'])
 
       case event.message['text']
       when 'profile'
@@ -90,9 +90,10 @@ class LinebotController < ApplicationController
           ])
         end
       else
+        convert_message = transrate_message(event.message['text'])
         message = {
           type: 'text',
-          text: event.message['text']
+          text: convert_message
         }
         client.reply_message(event['replyToken'], message)
       end
@@ -139,9 +140,13 @@ class LinebotController < ApplicationController
     result = response.body.force_encoding("utf-8")
     
     json = JSON.pretty_generate(JSON.parse(result))
+    jsonParse = JSON.parse(result)
+    ranslation_lan = jsonParse['detectedLanguage']['translations']['text']
     # puts json
-    logger.debug (result.to_yaml)
+    # logger.debug (result.to_yaml)
     logger.debug (JSON.parse(result))
-    return 
+    logger.debug (ranslation_lan)
+
+    return ranslation_lan
   end
 end
