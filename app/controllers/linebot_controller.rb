@@ -142,14 +142,15 @@ class LinebotController < ApplicationController
     json = JSON.pretty_generate(JSON.parse(result))
     jsonParse = JSON.parse(result)
     logger.debug (json)
-    # ranslation_lan = json['detectedLanguage']['translations']['text']
+    ranslation_lan = jsonParse[0]['translations'][0]['text']
     # puts json
     # logger.debug (result.to_yaml)
     # logger.debug (JSON.parse(result))
-    json.each do |value|
-      # print(youso, "¥n")
-      logger.debug (value)
-    end
+    # json.each do |value|
+    #   # print(youso, "¥n")
+    #   logger.debug (value)
+    # end
+    logger.debug (jsonParse[0])
     logger.debug (ranslation_lan)
 
     return ranslation_lan
