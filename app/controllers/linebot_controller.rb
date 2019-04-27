@@ -140,7 +140,8 @@ class LinebotController < ApplicationController
     
     json = JSON.pretty_generate(JSON.parse(result))
     # puts json
-    logger.debug (result)
-    logger.debug (result.inspect)
+    logger.debug (result.to_yaml)
+    logger.debug (JSON.parse(result))
+    return 
   end
 end
