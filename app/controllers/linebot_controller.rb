@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
   # スタート
   def callback
     body = request.body.read
-    logger.error("[error] y------------------------------------------------")
+    logger.info("[info] y------------------------------------------------")
     puts "aaaa"
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
@@ -51,6 +51,9 @@ class LinebotController < ApplicationController
   def handle_message(event)
     case event.type
     when Line::Bot::Event::MessageType::Text
+
+      transrate_message(event.message['text'])
+
       case event.message['text']
       when 'profile'
         if event['source']['type'] == 'user'
@@ -94,5 +97,45 @@ class LinebotController < ApplicationController
         client.reply_message(event['replyToken'], message)
       end
     end
+  end
+
+  def transrate_message(msg)
+    require 'net/https'
+    require 'uri'
+    require 'cgi'
+    require 'json'
+    require 'securerandom'
+
+    # **********************************************
+    # *** Update or verify the following values. ***
+    # **********************************************
+
+    # Replace the key string value with your valid subscription key.
+    key = '351118560b1a45929f0d91492722b4af'
+
+    host = 'https://api.cognitive.microsofttranslator.com'
+    path = '/detect?api-version=3.0'
+
+    uri = URI (host + path)
+
+    text = 'Salve, mondo!'
+
+    content = '[{"Text" : "' + text + '"}]'
+
+    request = Net::HTTP::Post.new(uri)
+    request['Content-type'] = 'application/json'
+    request['Content-length'] = content.length
+    request['Ocp-Apim-Subscription-Key'] = key
+    request['X-ClientTraceId'] = SecureRandom.uuid
+    request.body = content
+
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        http.request (request)
+    end
+
+    result = response.body.force_encoding("utf-8")
+
+    json = JSON.pretty_generate(JSON.parse(result))
+    puts json
   end
 end
