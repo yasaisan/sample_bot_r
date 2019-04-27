@@ -139,7 +139,7 @@ class LinebotController < ApplicationController
     result = response.body.force_encoding("utf-8")
     
     json = JSON.pretty_generate(JSON.parse(result))
-    puts json
-    logger.info(json)
+    # puts json
+    logger.info(@json.inspect)
   end
 end
