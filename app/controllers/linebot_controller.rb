@@ -41,9 +41,23 @@ class LinebotController < ApplicationController
     events.each { |event|
       case event
       when Line::Bot::Event::Message
-        handle_message(event)
+        case event.type
+        when Line::Bot::Event::MessageType::Text
+          message = {
+            type: 'text',
+            text: event.message['text']
+          }
+          client.reply_message(event['replyToken'], message)
+        end
       end
     }
+
+    # events.each { |event|
+    #   case event
+    #   when Line::Bot::Event::Message
+    #     handle_message(event)
+    #   end
+    # }
     head :ok
   end
 
