@@ -30,8 +30,8 @@ class LinebotController < ApplicationController
   # スタート
   def callback
     body = request.body.read
-    logger.info("[info] y------------------------------------------------")
-    puts "aaaa"
+    # logger.info("[info] y------------------------------------------------")
+    # puts "aaaa"
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
@@ -90,7 +90,8 @@ class LinebotController < ApplicationController
           ])
         end
       else
-        convert_message = transrate_message(event.message['text'])
+        convert_message = transrate_ja_message(event.message['text'])
+        get_google_image(event.message['text'])
         message = {
           type: 'text',
           text: convert_message
@@ -100,7 +101,7 @@ class LinebotController < ApplicationController
     end
   end
 
-  def transrate_message(msg)
+  def transrate_ja_message(msg)
     require 'net/https'
     require 'uri'
     require 'cgi'
@@ -139,9 +140,9 @@ class LinebotController < ApplicationController
     
     result = response.body.force_encoding("utf-8")
     
-    json = JSON.pretty_generate(JSON.parse(result))
+    # json = JSON.pretty_generate(JSON.parse(result))
     jsonParse = JSON.parse(result)
-    logger.debug (json)
+    # logger.debug (json)
     ranslation_lan = jsonParse[0]['translations'][0]['text']
     # puts json
     # logger.debug (result.to_yaml)
@@ -155,4 +156,33 @@ class LinebotController < ApplicationController
 
     return ranslation_lan
   end
+
+  def get_google_image(word)
+    # baseurl = "https://www.googleapis.com/customsearch/v1?"
+    # baseurl .= "key=AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI&cx=016901115011056515106:6pjbegaiuga&searchType=image&q="
+    # get_img_url = $baseurl . urlencode($word)
+    require 'google/apis/customsearch_v1'
+
+    API_KEY = 'AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI'
+    CSE_ID = '016901115011056515106:6pjbegaiuga'
+
+    searcher = Google::Apis::CustomsearchV1::CustomsearchService.new
+    searcher.key = API_KEY
+    logger.debug ("searchWord = " . word)
+    print "QUERY> "
+    # query = gets.chomp
+
+    results = searcher.list_cses(word, cx: CSE_ID)
+    items = results.items
+    pp items.map {|item| { title: item.title, link: item.link} }
+  end
+  # function google_image($word) {
+  #   // TODO: キーの外だし
+  #   $baseurl = "https://www.googleapis.com/customsearch/v1?";
+  #   $baseurl .= "key=AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI&cx=016901115011056515106:6pjbegaiuga&searchType=image&q=";
+  #   $myurl = $baseurl . urlencode($word);
+  #   $myjson = file_get_contents($myurl);
+  #   $recs = json_decode($myjson, true);
+  #   return $recs;
+  # }
 end
