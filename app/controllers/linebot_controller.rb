@@ -101,6 +101,12 @@ class LinebotController < ApplicationController
         link.each{|var|
           logger.debug(var[:link])
           # logger.debug(" searchResult.Link = " + var['link'])
+          message = {
+            type: "image",
+            originalContentUrl: var[:link],
+            previewImageUrl: ar[:link]
+          }
+          client.reply_message(event['replyToken'], message)
         }
       end
     end
