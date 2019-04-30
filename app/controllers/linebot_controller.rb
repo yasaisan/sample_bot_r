@@ -163,16 +163,16 @@ class LinebotController < ApplicationController
     # get_img_url = $baseurl . urlencode($word)
     require 'google/apis/customsearch_v1'
 
-    API_KEY = 'AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI'
-    CSE_ID = '016901115011056515106:6pjbegaiuga'
+    api_key = 'AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI'
+    cse_id = '016901115011056515106:6pjbegaiuga'
 
     searcher = Google::Apis::CustomsearchV1::CustomsearchService.new
-    searcher.key = API_KEY
+    searcher.key = api_key
     logger.debug ("searchWord = " + word)
     print "QUERY> "
     query = gets.chomp
 
-    results = searcher.list_cses(word, cx: CSE_ID)
+    results = searcher.list_cses(word, cx: cse_id)
     items = results.items
     pp items.map {|item| { title: item.title, link: item.link} }
   end
