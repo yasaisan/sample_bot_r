@@ -100,20 +100,20 @@ class LinebotController < ApplicationController
         # logger.debug(link[0])
         link.each{|var|
           logger.debug(var[:image])
-          var[:image].each{|imgs|
-            logger.debug(imgs[:thumbnail_link])
-            message = {
-              type: "image",
-              originalContentUrl: imgs[:thumbnail_link],
-              previewImageUrl: imgs[:thumbnail_link]
-            }
-          }
-          # logger.debug(" searchResult.Link = " + var['link'])
-          # message = {
-          #   type: "image",
-          #   originalContentUrl: var[:link],
-          #   previewImageUrl: var[:link]
+          # var[:image].each{|imgs|
+          #   logger.debug(imgs[:thumbnail_link])
+          #   message = {
+          #     type: "image",
+          #     originalContentUrl: imgs[:thumbnail_link],
+          #     previewImageUrl: imgs[:thumbnail_link]
+          #   }
           # }
+          # logger.debug(" searchResult.Link = " + var['link'])
+          message = {
+            type: "image",
+            originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
+            previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+          }
           client.reply_message(event['replyToken'], message)
         }
       end
@@ -194,7 +194,7 @@ class LinebotController < ApplicationController
     results = searcher.list_cses(word, cx: cse_id, search_type: 'image', num: 2)
     items = results.items
     # logger.debug(items)
-    return items.map {|item| { title: item.title, link: item.link, image: item.image} }
+    return items.map {|item| { title: item.title, link: item.link, image: item.image.} }.to_h
     # logger.debug("res = " + res)
   end
   # function google_image($word) {
