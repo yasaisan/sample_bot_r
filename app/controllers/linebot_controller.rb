@@ -104,7 +104,7 @@ class LinebotController < ApplicationController
           message = {
             type: "image",
             originalContentUrl: var[:link],
-            previewImageUrl: ar[:link]
+            previewImageUrl: var[:link]
           }
           client.reply_message(event['replyToken'], message)
         }
