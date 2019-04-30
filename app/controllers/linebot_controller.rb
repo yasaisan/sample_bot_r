@@ -168,7 +168,7 @@ class LinebotController < ApplicationController
 
     # searcher = Google::Apis::CustomsearchV1::CustomsearchService.new
     # searcher.key = API_KEY
-    logger.debug ("searchWord = " . word)
+    logger.debug ("searchWord = " + word)
     # print "QUERY> "
     # query = gets.chomp
 
