@@ -99,7 +99,7 @@ class LinebotController < ApplicationController
         client.reply_message(event['replyToken'], message)
         # logger.debug(link[0])
         link.each{|var|
-          logger.debug(" searchResult.Title = " + var)
+          logger.debug(var)
           # logger.debug(" searchResult.Link = " + var['link'])
         }
       end
