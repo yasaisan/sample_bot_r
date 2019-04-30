@@ -91,12 +91,13 @@ class LinebotController < ApplicationController
         end
       else
         convert_message = transrate_ja_message(event.message['text'])
-        get_google_image(event.message['text'])
+        link = get_google_image(event.message['text'])
         message = {
           type: 'text',
           text: convert_message
         }
         client.reply_message(event['replyToken'], message)
+        logger.debug(link)
       end
     end
   end
@@ -175,7 +176,7 @@ class LinebotController < ApplicationController
     results = searcher.list_cses(word, cx: cse_id, search_type: 'image', num: 2)
     items = results.items
     # logger.debug(items)
-    pp items.map {|item| { title: item.title, link: item.link} }
+    return items.map {|item| { title: item.title, link: item.link} }
     # logger.debug("res = " + res)
   end
   # function google_image($word) {
