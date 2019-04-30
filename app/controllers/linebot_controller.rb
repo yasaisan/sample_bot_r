@@ -97,7 +97,7 @@ class LinebotController < ApplicationController
           text: convert_message
         }
         client.reply_message(event['replyToken'], message)
-        logger.debug(link)
+        logger.debug(link[0])
       end
     end
   end
