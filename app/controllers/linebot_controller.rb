@@ -97,7 +97,11 @@ class LinebotController < ApplicationController
           text: convert_message
         }
         client.reply_message(event['replyToken'], message)
-        logger.debug(link[0])
+        # logger.debug(link[0])
+        link.each{|var|
+          logger.debug(" searchResult.Title = " + var.title)
+          logger.debug(" searchResult.Link = " + var.link)
+        }
       end
     end
   end
