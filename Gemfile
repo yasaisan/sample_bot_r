@@ -13,7 +13,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'line-bot-api'
 gem 'dotenv-rails'
 
-# gem 'google-api-client', '~> 0.8.6'
+gem 'google-api-client', '~> 0.11'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

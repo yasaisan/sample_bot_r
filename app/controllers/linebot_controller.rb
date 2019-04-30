@@ -163,18 +163,18 @@ class LinebotController < ApplicationController
     # get_img_url = $baseurl . urlencode($word)
     require 'google/apis/customsearch_v1'
 
-    API_KEY = 'AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI'
-    CSE_ID = '016901115011056515106:6pjbegaiuga'
+    # API_KEY = 'AIzaSyCqe72UGyiLECERkWVTvOLXdFJxYvVspTI'
+    # CSE_ID = '016901115011056515106:6pjbegaiuga'
 
-    searcher = Google::Apis::CustomsearchV1::CustomsearchService.new
-    searcher.key = API_KEY
+    # searcher = Google::Apis::CustomsearchV1::CustomsearchService.new
+    # searcher.key = API_KEY
     logger.debug ("searchWord = " . word)
-    print "QUERY> "
+    # print "QUERY> "
     # query = gets.chomp
 
-    results = searcher.list_cses(word, cx: CSE_ID)
-    items = results.items
-    pp items.map {|item| { title: item.title, link: item.link} }
+    # results = searcher.list_cses(word, cx: CSE_ID)
+    # items = results.items
+    # pp items.map {|item| { title: item.title, link: item.link} }
   end
   # function google_image($word) {
   #   // TODO: キーの外だし
