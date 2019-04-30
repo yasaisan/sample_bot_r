@@ -186,7 +186,7 @@ class LinebotController < ApplicationController
     results = searcher.list_cses(word, cx: cse_id, search_type: 'image', num: 2)
     items = results.items
     # logger.debug(items)
-    return items.map {|item| { title: item.title, link: item.link} }
+    return items.map {|item| { title: item.title, link: item.thumbnail_link=} }
     # logger.debug("res = " + res)
   end
   # function google_image($word) {
