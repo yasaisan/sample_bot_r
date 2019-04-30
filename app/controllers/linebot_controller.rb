@@ -172,9 +172,9 @@ class LinebotController < ApplicationController
     logger.debug ( "QUERY> " )
     # query = gets.chomp
 
-    results = searcher.list_cses(word, cx: cse_id)
-    items = results.items
-    pp items.map {|item| { title: item.title, link: item.link} }
+    # results = searcher.list_cses(word, cx: cse_id)
+    # items = results.items
+    # pp items.map {|item| { title: item.title, link: item.link} }
   end
   # function google_image($word) {
   #   // TODO: キーの外だし
