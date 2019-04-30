@@ -174,7 +174,7 @@ class LinebotController < ApplicationController
     # https://www.rubydoc.info/github/google/google-api-ruby-client/Google%2FApis%2FCustomsearchV1%2FCustomsearchService:list_cses
     results = searcher.list_cses(word, cx: cse_id, search_type: 'image')
     items = results.items
-    pp items
+    logger.debug(items)
     # items.map {|item| { title: item.title, link: item.link} }
   end
   # function google_image($word) {
