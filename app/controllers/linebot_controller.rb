@@ -123,14 +123,14 @@ class LinebotController < ApplicationController
             },
             {
               type: "image",
-              originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
-              previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+              originalContentUrl: var[:image].thumbnail_link,
+              previewImageUrl: var[:image].thumbnail_link
             },
-            {
-              type: "image",
-              originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
-              previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
-            },
+            # {
+            #   type: "image",
+            #   originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
+            #   previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+            # },
             {
               type: "template",
               altText: "this is a image carousel template",
@@ -138,7 +138,7 @@ class LinebotController < ApplicationController
                   type: "image_carousel",
                   columns: [
                       {
-                        imageUrl: "https://example.com/bot/images/item1.jpg",
+                        imageUrl: var[:image].thumbnail_link,
                         action: {
                           type: "postback",
                           label: "Buy",
@@ -146,7 +146,7 @@ class LinebotController < ApplicationController
                         }
                       },
                       {
-                        imageUrl: "https://example.com/bot/images/item2.jpg",
+                        imageUrl: var[:image].thumbnail_link,
                         action: {
                           type: "message",
                           label: "Yes",
@@ -154,11 +154,11 @@ class LinebotController < ApplicationController
                         }
                       },
                       {
-                        imageUrl: "https://example.com/bot/images/item3.jpg",
+                        imageUrl: var[:image].thumbnail_link,
                         action: {
                           type: "uri",
-                          label: "View detail",
-                          uri: "http://example.com/page/222"
+                          label: event.message['text'],
+                          uri: var[:image].context_link
                         }
                       }
                   ]
