@@ -99,7 +99,8 @@ class LinebotController < ApplicationController
         # client.reply_message(event['replyToken'], message)
         # logger.debug(link[0])
         link.each{|var|
-          logger.debug(var[:image])
+          logger.debug('y---------------------------------------')
+          p var[:image]
           # var[:image].each{|imgs|
           #   logger.debug(imgs[:thumbnail_link])
           #   message = {
@@ -110,6 +111,10 @@ class LinebotController < ApplicationController
           # }
           # logger.debug(" searchResult.Link = " + var['link'])
           message = [
+            {
+              type: 'text',
+              text: convert_message
+            },
             {
               type: "image",
               originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
