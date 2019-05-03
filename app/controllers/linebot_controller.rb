@@ -99,7 +99,8 @@ class LinebotController < ApplicationController
         # client.reply_message(event['replyToken'], message)
         # logger.debug(link[0])
         link.each{|var|
-          logger.debug('y---------------------------------------' + var)
+          logger.debug('y---------------------------------------')
+          p var
           p var[:image]
 
           # var[:image].each {|imgs|
