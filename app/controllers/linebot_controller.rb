@@ -102,13 +102,12 @@ class LinebotController < ApplicationController
           logger.debug('y---------------------------------------')
           pp var[:image]
 
-          # items.map {|item|
-          #   {
-          #     title: item.title,
-          #     link: item.link,
-          #     image: item.image
-          #   }
-          # }
+          img = var[:image].map {|imgs|
+            {
+              thumbnail: imgs.thumbnail_link
+            }
+          }
+          logger.debug(img['thumbnail'])
           # var[:image].each{|imgs|
           #   logger.debug(imgs[:thumbnail_link])
           #   message = {
@@ -167,12 +166,9 @@ class LinebotController < ApplicationController
               }
             }
           ]
-          #   type: "image",
-          #   originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
-          #   previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
-          # }
-          client.reply_message(event['replyToken'], message)
+          # client.reply_message(event['replyToken'], message)
         }
+        client.reply_message(event['replyToken'], message)
       end
     end
   end
