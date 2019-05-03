@@ -146,12 +146,12 @@ class LinebotController < ApplicationController
                         }
                       },
                       {
-                        imageUrl: var[:image].thumbnail_link,
-                        action: {
+                        # imageUrl: var[:image].thumbnail_link,
+                        # action: {
                           type: "image",
-                          originalContentUrl: var[:image].thumbnail_link
-                          # previewImageUrl: var[:image].thumbnail_link
-                        }
+                          originalContentUrl: var[:image].thumbnail_link,
+                          previewImageUrl: var[:image].thumbnail_link
+                        # }
                       },
                       {
                         imageUrl: var[:image].thumbnail_link,
