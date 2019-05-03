@@ -124,7 +124,7 @@ class LinebotController < ApplicationController
             {
               type: "image",
               originalContentUrl: var[:image].thumbnail_link,
-              previewImageUrl: var[:image].thumbnail_link
+              previewImageUrl: var[:link]
             },
             # {
             #   type: "image",
@@ -149,8 +149,8 @@ class LinebotController < ApplicationController
                         imageUrl: var[:image].thumbnail_link,
                         action: {
                           type: "message",
-                          label: "Yes",
-                          text: "yes"
+                          label: event.message['text'],
+                          text: event.message['text']
                         }
                       },
                       {
