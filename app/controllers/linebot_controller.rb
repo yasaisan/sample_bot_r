@@ -145,14 +145,14 @@ class LinebotController < ApplicationController
                           data: "action=buy&itemid=111"
                         }
                       },
-                      {
-                        # imageUrl: var[:image].thumbnail_link,
-                        # action: {
-                          type: "image",
-                          originalContentUrl: var[:image].thumbnail_link,
-                          previewImageUrl: var[:image].thumbnail_link
-                        # }
-                      },
+                      # {
+                      #   # imageUrl: var[:image].thumbnail_link,
+                      #   # action: {
+                      #     type: "image",
+                      #     originalContentUrl: var[:image].thumbnail_link,
+                      #     previewImageUrl: var[:image].thumbnail_link
+                      #   # }
+                      # },
                       {
                         imageUrl: var[:image].thumbnail_link,
                         action: {
