@@ -175,6 +175,7 @@ class LinebotController < ApplicationController
                   { label: 'No', type: 'message', text: 'No!' },
                 ],
               }
+            }
           ]
           # client.reply_message(event['replyToken'], message)
         }
