@@ -109,11 +109,22 @@ class LinebotController < ApplicationController
           #   }
           # }
           # logger.debug(" searchResult.Link = " + var['link'])
-          message = {
-            type: "image",
-            originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
-            previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
-          }
+          message = [
+            {
+              type: "image",
+              originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
+              previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+            },
+            {
+              type: "image",
+              originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
+              previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+            }
+          ]
+          #   type: "image",
+          #   originalContentUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi",
+          #   previewImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQaub9gp0Su1ik2m8k7fjUCZQ74LgiwHVyoaqvSOxpblBJdF2cz8pq1nGi"
+          # }
           client.reply_message(event['replyToken'], message)
         }
       end
