@@ -101,7 +101,7 @@ class LinebotController < ApplicationController
         link.each{|var|
           logger.debug('y---------------------------------------')
           p var
-          p var[:image]
+          p var[:image].thumbnail_link
 
           # var[:image].each {|imgs|
           #   logger.debug(imgs)
