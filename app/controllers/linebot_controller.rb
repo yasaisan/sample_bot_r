@@ -124,7 +124,7 @@ class LinebotController < ApplicationController
             {
               type: "image",
               originalContentUrl: var[:image].thumbnail_link,
-              previewImageUrl: var[:link]
+              previewImageUrl: var[:image].thumbnail_link
             },
             # {
             #   type: "image",
@@ -163,7 +163,18 @@ class LinebotController < ApplicationController
                       }
                   ]
               }
-            }
+            },
+            {
+              type: 'template',
+              altText: '登録しますか？',
+              template: {
+                type: 'confirm',
+                text: '登録しますか？',
+                actions: [
+                  { label: 'Yes', type: 'message', text: 'Yes!' },
+                  { label: 'No', type: 'message', text: 'No!' },
+                ],
+              }
           ]
           # client.reply_message(event['replyToken'], message)
         }
