@@ -244,7 +244,9 @@ class LinebotController < ApplicationController
     # query = gets.chomp
     # https://www.rubydoc.info/github/google/google-api-ruby-client/Google%2FApis%2FCustomsearchV1%2FCustomsearchService:list_cses
     results = searcher.list_cses(word, cx: cse_id, search_type: 'image', num: 2)
+    p results
     items = results.items
+    
     # logger.debug(items)
     return items.map {|item| { title: item.title, link: item.link, image: item.image} }
     # logger.debug("res = " + res)
