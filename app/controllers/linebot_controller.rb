@@ -100,7 +100,15 @@ class LinebotController < ApplicationController
         # logger.debug(link[0])
         link.each{|var|
           logger.debug('y---------------------------------------')
-          p var[:image]
+          pp var[:image]
+
+          # items.map {|item|
+          #   {
+          #     title: item.title,
+          #     link: item.link,
+          #     image: item.image
+          #   }
+          # }
           # var[:image].each{|imgs|
           #   logger.debug(imgs[:thumbnail_link])
           #   message = {
