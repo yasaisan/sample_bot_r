@@ -148,6 +148,14 @@ class LinebotController < ApplicationController
                       {
                         imageUrl: var[:image].thumbnail_link,
                         action: {
+                          type: "image",
+                          originalContentUrl: var[:image].thumbnail_link,
+                          previewImageUrl: var[:image].thumbnail_link
+                        }
+                      },
+                      {
+                        imageUrl: var[:image].thumbnail_link,
+                        action: {
                           type: "message",
                           label: event.message['text'],
                           text: event.message['text']
